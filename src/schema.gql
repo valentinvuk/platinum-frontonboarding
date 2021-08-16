@@ -1,0 +1,1313 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type DraftStartingListGymnastApplication {
+  id: String!
+  gymnastId: String!
+}
+
+type DraftStartingListSlot {
+  gymnastApplication: DraftStartingListGymnastApplication
+}
+
+type DraftStartingListLot {
+  lotNumber: Float!
+  startingTime: DateTime!
+  slots: [DraftStartingListSlot!]!
+  gymsOccupied: [String!]!
+}
+
+"""
+A date-time string at UTC, such as 2007-12-03T10:15:30Z, compliant with the `date-time` format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for representation of dates and times using the Gregorian calendar.
+"""
+scalar DateTime
+
+type LeagueParticipants {
+  leagueId: String!
+  amountOfParticipants: Float!
+  maxParticipants: Float!
+}
+
+type DraftStartingListApparatus {
+  id: ID!
+  lots: [DraftStartingListLot!]!
+  participantsPerLeagues: [LeagueParticipants!]!
+}
+
+type DraftStartingList {
+  apparatuses: [DraftStartingListApparatus!]!
+}
+
+type RequestPasswordResetOutput {
+  success: Boolean!
+}
+
+type ResetPasswordOutput {
+  success: Boolean!
+}
+
+type AccountVerificationOutput {
+  success: Boolean!
+}
+
+type AutoLoginTokenDto {
+  autoLoginToken: String!
+}
+
+type UserDto {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  email: String!
+  country: Country!
+  phone: String!
+  gender: Gender
+  artisticGymnasticsBranch: ArtisticGymnasticsBranch
+  approved: Boolean
+}
+
+enum Country {
+  MyCountry
+  AF
+  AX
+  AL
+  DZ
+  AS
+  AD
+  AO
+  AI
+  AQ
+  AG
+  AR
+  AM
+  AW
+  AU
+  AT
+  AZ
+  BS
+  BH
+  BD
+  BB
+  BY
+  BE
+  BZ
+  BJ
+  BM
+  BT
+  BO
+  BQ
+  BA
+  BW
+  BV
+  BR
+  IO
+  BN
+  BG
+  BF
+  BI
+  KH
+  CM
+  CA
+  CV
+  KY
+  CF
+  TD
+  CL
+  CN
+  CX
+  CC
+  CO
+  KM
+  CG
+  CD
+  CK
+  CR
+  CI
+  HR
+  CU
+  CW
+  CY
+  CZ
+  DK
+  DJ
+  DM
+  DO
+  EC
+  EG
+  SV
+  GQ
+  ER
+  EE
+  ET
+  FK
+  FO
+  FJ
+  FI
+  FR
+  GF
+  PF
+  TF
+  GA
+  GM
+  GE
+  DE
+  GH
+  GI
+  GR
+  GL
+  GD
+  GP
+  GU
+  GT
+  GG
+  GN
+  GW
+  GY
+  HT
+  HM
+  VA
+  HN
+  HK
+  HU
+  IS
+  IN
+  ID
+  IR
+  IQ
+  IE
+  IM
+  IL
+  IT
+  JM
+  JP
+  JE
+  JO
+  KZ
+  KE
+  KI
+  KR
+  KP
+  KW
+  KG
+  LA
+  LV
+  LB
+  LS
+  LR
+  LY
+  LI
+  LT
+  LU
+  MO
+  MK
+  MG
+  MW
+  MY
+  MV
+  ML
+  MT
+  MH
+  MQ
+  MR
+  MU
+  YT
+  MX
+  FM
+  MD
+  MC
+  MN
+  ME
+  MS
+  MA
+  MZ
+  MM
+  NA
+  NR
+  NP
+  NL
+  NC
+  NZ
+  NI
+  NE
+  NG
+  NU
+  NF
+  MP
+  NO
+  OM
+  PK
+  PW
+  PS
+  PA
+  PG
+  PY
+  PE
+  PH
+  PN
+  PL
+  PT
+  PR
+  QA
+  RE
+  RO
+  RU
+  RW
+  BL
+  SH
+  KN
+  LC
+  MF
+  PM
+  VC
+  WS
+  SM
+  ST
+  SA
+  SN
+  RS
+  SC
+  SL
+  SG
+  SK
+  SI
+  SB
+  SO
+  ZA
+  GS
+  ES
+  LK
+  SD
+  SS
+  SR
+  SJ
+  SZ
+  SE
+  CH
+  SX
+  SY
+  TW
+  TJ
+  TZ
+  TH
+  TL
+  TG
+  TK
+  TO
+  TT
+  TN
+  TR
+  TM
+  TC
+  TV
+  UG
+  UA
+  AE
+  GB
+  US
+  UM
+  UY
+  UZ
+  VU
+  VE
+  VN
+  VG
+  VI
+  WF
+  EH
+  YE
+  ZM
+  ZW
+}
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+enum ArtisticGymnasticsBranch {
+  WAG
+  MAG
+}
+
+type LoginUserDto {
+  expiresIn: String!
+  accessToken: String!
+  refreshToken: String!
+}
+
+type GymnastRecordingDto {
+  id: ID!
+  videoLocation: String
+  status: GymnastRecordingStatus!
+  slot: SlotDto!
+}
+
+enum GymnastRecordingStatus {
+  RECORDING_PERFORMANCE
+  UPLOADING
+  UPLOADED
+  URL_FOR_UPLOAD_CREATED
+  FAILED
+}
+
+type JudgeApplicationDto {
+  id: ID!
+  event: EventDto!
+  judge: JudgeDto!
+  createdAt: DateTime!
+}
+
+type JudgeDto {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  email: String!
+  country: Country!
+  phone: String!
+  gender: Gender
+  artisticGymnasticsBranch: ArtisticGymnasticsBranch
+  approved: Boolean
+  role: String!
+  judgeCategory: Int
+  figLicenceId: String
+  judgeApplications: [JudgeApplicationDto!]
+}
+
+type ExecutionScoreDto {
+  id: ID!
+  executionScore: Float!
+  judge: JudgeDto
+  score: ScoreDto!
+  createdByJuror: JuryExecutionRole
+}
+
+enum JuryExecutionRole {
+  E1
+  E2
+  E3
+  E4
+  E5
+  E6
+}
+
+type InquiryDto {
+  id: ID!
+  state: InquiryStateEnum!
+  isScoreValid: Boolean
+  difficultyScore: Float
+  neutralDeduction: Float
+  reason: String
+  createdAt: DateTime!
+  parent: DifficultyScoreDto!
+}
+
+enum InquiryStateEnum {
+  IN_QUEUE
+  CURRENTLY_RESOLVING
+  RESOLVED
+}
+
+type DifficultyScoreDto {
+  id: ID!
+  difficultyScore: Float!
+  neutralDeduction: Float!
+  difficultyNeutralDeduction: Float!
+  judge: JudgeDto!
+  score: ScoreDto!
+  inquiry: InquiryDto
+}
+
+type LineScoreDto {
+  id: ID!
+  lineScoreDeduction: Float!
+  judge: JudgeDto!
+  score: ScoreDto!
+  createdByJuror: JuryAssistantRole
+}
+
+enum JuryAssistantRole {
+  L1
+  L2
+  T1
+  T2
+}
+
+type TimeScoreDto {
+  id: ID!
+  timeScoreDeduction: Float!
+  judge: JudgeDto!
+  score: ScoreDto!
+  createdByJuror: JuryAssistantRole
+}
+
+type ScoreDto {
+  id: ID!
+  confirmed: Boolean!
+  executionScoreAverage: Float
+  finalScore: Float
+  difficultyScore: DifficultyScoreDto
+  executionScores: [ExecutionScoreDto!]
+  lineScore: LineScoreDto
+  timeScore: TimeScoreDto
+  slot: SlotDto!
+  eliminateReason: EliminateSlotReason
+  confirmedAt: DateTime
+}
+
+enum EliminateSlotReason {
+  DID_NOT_FINISH
+  INAPPROPRIATE_CONTENT
+  RECORDING_NOT_UPLOADED
+  INVALID_UNIQUE_CODE
+}
+
+type SlotDto {
+  id: ID!
+  slotNumber: Float!
+  uniqueCode: String
+  lot: LotDto
+  gymnastApplication: GymnastApplicationDto!
+  gymnastRecording: GymnastRecordingDto
+  score: ScoreDto
+
+  """
+  Timestamp which says from when can we expect recording to be uploaded, because from this datetime, unique code starts to be visible to gymnast
+  """
+  recordingExpectedFrom: DateTime!
+}
+
+type LotDto {
+  id: ID!
+  lotNumber: Int!
+  startingTime: DateTime
+  slots: [SlotDto!]!
+}
+
+type FinalStartingListDto {
+  id: ID!
+  apparatus: ApparatusDto!
+  event: EventDto!
+  lots: [LotDto!]!
+}
+
+type ApparatusDto {
+  id: ID!
+  name: String!
+  gender: Gender!
+  events: [EventDto!]
+  finalStartingLists(filter: FinalStartingListFilter!): [FinalStartingListDto!]
+  amountOfLineJuries: Int!
+  amountOfTimeJuries: Int!
+  artisticGymnastics: Boolean!
+}
+
+input FinalStartingListFilter {
+  event: String
+}
+
+type LeagueDto {
+  id: ID!
+  name: String!
+  minScore: Float
+  maxScore: Float
+  events: [EventDto!]
+}
+
+type DifficultyJuryDto {
+  id: ID!
+  createdAt: DateTime!
+  judge: JudgeDto
+  apparatus: ApparatusDto
+  event: EventDto
+  online: Boolean!
+  juryRole: JuryDifficultyRole!
+}
+
+enum JuryDifficultyRole {
+  D1
+  D2
+  SUPERVISOR
+}
+
+type ExecutionJuryDto {
+  id: ID!
+  createdAt: DateTime!
+  judge: JudgeDto
+  apparatus: ApparatusDto
+  event: EventDto
+  online: Boolean!
+  juryRole: JuryExecutionRole!
+}
+
+type SuperiorJuryDto {
+  id: ID!
+  createdAt: DateTime!
+  judge: JudgeDto
+  apparatus: ApparatusDto
+  event: EventDto
+  online: Boolean!
+  juryRole: JurySuperiorRole!
+}
+
+enum JurySuperiorRole {
+  I1
+  I2
+}
+
+type AssistantJuryDto {
+  id: ID!
+  createdAt: DateTime!
+  judge: JudgeDto
+  apparatus: ApparatusDto
+  event: EventDto
+  online: Boolean!
+  juryRole: JuryAssistantRole!
+}
+
+type GymnastApplicationStats {
+  league: LeagueDto
+  apparatus: ApparatusDto
+  amountOfApprovedGymnastApplications: Int
+}
+
+type EventDto {
+  id: ID!
+  name: String!
+  eventStartDateTime: DateTime!
+  entryFee: Float
+  internalPriceFund: Float
+  minApplicantsPerLeague: Int
+  maxApplicantsPerLeague: Int
+  status: EventStatus!
+  eventImage: String
+  description: String
+  apparatuses: [ApparatusDto!]
+  leagues: [LeagueDto!]
+  gymnastApplications(gymnastApplicationFilter: GymnastApplicationFilter!): [GymnastApplicationDto!]
+  judgeApplications: [JudgeApplicationDto!]
+  difficultyJuries: [DifficultyJuryDto!]
+  executionJuries: [ExecutionJuryDto!]
+  superiorJuries: [SuperiorJuryDto!]
+  assistantJuries: [AssistantJuryDto!]
+  draftStartingList: DraftStartingList
+  finalStartingLists: [FinalStartingListDto!]
+  approvedGymnastApplicationsStats: [GymnastApplicationStats!]
+}
+
+enum EventStatus {
+  PUBLISHED
+  SCHEDULED
+  STARTED
+  ENDED
+}
+
+input GymnastApplicationFilter {
+  apparatuses: [String!]
+  gymnast: String
+}
+
+type GymDto {
+  id: ID!
+  name: String!
+  country: Country!
+  city: String!
+  address: String!
+}
+
+type GymnastApplicationDto {
+  id: ID!
+  zone: GymnastApplicationTimeZone!
+  status: GymnastApplicationStatus
+  event: EventDto!
+  apparatus: ApparatusDto!
+  league: LeagueDto!
+  gymnast: GymnastDto!
+  gym: GymDto!
+  createdAt: DateTime!
+  scheduled: Boolean!
+  slot: SlotDto
+}
+
+enum GymnastApplicationTimeZone {
+  EUROPE
+}
+
+enum GymnastApplicationStatus {
+  APPROVED
+  REJECTED
+}
+
+type GymnastDto {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  email: String!
+  country: Country!
+  phone: String!
+  gender: Gender
+  artisticGymnasticsBranch: ArtisticGymnasticsBranch
+  approved: Boolean
+  role: String!
+  dateOfBirth: DateTime
+  gymnastApplications: [GymnastApplicationDto!]
+}
+
+type RefreshedAccessTokenDto {
+  expiresIn: String!
+  accessToken: String!
+  refreshToken: String!
+}
+
+type ImpersonateD1Dto {
+  expiresIn: String!
+  accessToken: String!
+  refreshToken: String!
+}
+
+type ChatRoomDto {
+  room: String!
+  token: String!
+  uid: String!
+}
+
+type UploadRecordingUrlDto {
+  url: String!
+}
+
+type JuryRoleDto {
+  juryRole: String!
+  filled: Boolean!
+}
+
+type ApparatusJuryRoleDto {
+  apparatusId: String!
+  apparatusName: String!
+  juryRoles: [JuryRoleDto!]!
+}
+
+type EventJuryRolesDto {
+  apparatusRoles: [ApparatusJuryRoleDto!]!
+}
+
+type RankingDto {
+  name: String!
+  country: Country!
+  finalScore: Float!
+  difficultyScore: Float!
+  neutralDeduction: Float!
+  executionScoreAverage: Float!
+  inquiryState: InquiryStateEnum
+  gymnastId: String!
+}
+
+type EventPaginatedOutput {
+  itemCount: Int!
+  items: [EventDto!]!
+}
+
+type EventJuryDto {
+  id: ID!
+  createdAt: DateTime!
+  judge: JudgeDto
+  apparatus: ApparatusDto
+  event: EventDto
+  online: Boolean!
+  difficultyJuryRole: JuryDifficultyRole
+  executionJuryRole: JuryExecutionRole
+  superiorJuryRole: JurySuperiorRole
+  assistantJuryRole: JuryAssistantRole
+}
+
+type JudgeApplicationPaginatedOutput {
+  itemCount: Int!
+  items: [JudgeApplicationDto!]!
+}
+
+type PlayStreamDto {
+  id: ID!
+  status: PlayStreamStatus!
+  slotPlaylist: [SlotDto!]!
+  currentSlot: SlotDto
+  nextSlot: SlotDto
+  event: EventDto!
+  apparatus: ApparatusDto!
+}
+
+enum PlayStreamStatus {
+  NOT_STARTED
+  PLAYING
+  PAUSED
+  STOPPED
+}
+
+type PublicGymnastDto {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  country: Country!
+}
+
+type PublicGymnastApplicationDto {
+  id: ID!
+  gymnast: PublicGymnastDto!
+}
+
+type PublicGymnastRecordingDto {
+  id: ID!
+  videoLocation: String
+}
+
+type PublicDifficultyScoreDto {
+  id: ID!
+  difficultyScore: Float!
+  neutralDeduction: Float!
+  difficultyNeutralDeduction: Float!
+}
+
+type PublicScoreDto {
+  id: ID!
+  confirmed: Boolean!
+  executionScoreAverage: Float
+  finalScore: Float
+  difficultyScore: PublicDifficultyScoreDto
+  eliminateReason: EliminateSlotReason
+}
+
+type PublicSlotDto {
+  id: ID!
+  slotNumber: Float!
+  gymnastApplication: PublicGymnastApplicationDto!
+  gymnastRecording: PublicGymnastRecordingDto
+  score: PublicScoreDto
+}
+
+type PublicLotDto {
+  id: ID!
+  lotNumber: Int!
+  slots: [PublicSlotDto!]!
+}
+
+type PublicFinalStartingListDto {
+  id: ID!
+  lots: [PublicLotDto!]!
+}
+
+type PublicApparatusDto {
+  id: ID!
+  name: String!
+  gender: Gender!
+  finalStartingList: PublicFinalStartingListDto
+}
+
+type PublicLeagueDto {
+  id: ID!
+  name: String!
+}
+
+type PublicEventDto {
+  id: ID!
+  name: String!
+  description: String!
+  eventStartDateTime: DateTime
+  status: EventStatus!
+  eventImage: String
+  leagues: [PublicLeagueDto!]!
+  apparatuses: [PublicApparatusDto!]!
+}
+
+type PublicPlayStreamDto {
+  id: ID!
+  status: PlayStreamStatus!
+  currentSlot: PublicSlotDto
+  apparatus: PublicApparatusDto!
+  event: PublicEventDto!
+}
+
+type AssistantJuryStatsPairDto {
+  mag: Int
+  wag: Int
+}
+
+type ExecutionJuryStatsPairDto {
+  mag: Int
+  wag: Int
+}
+
+type ExecutionJuryStatsDto {
+  unassignedJudges: ExecutionJuryStatsPairDto!
+  neededJudges: ExecutionJuryStatsPairDto!
+  neededJudgesForFullJury: ExecutionJuryStatsPairDto!
+  allDifficultyJudgesAssigned: Boolean!
+  minimumNumberOfJudgesAvailable: Boolean!
+}
+
+type AssistantJuryStatsDto {
+  unassignedJudges: AssistantJuryStatsPairDto!
+  neededJudges: AssistantJuryStatsPairDto!
+  allExecutionJudgesAssigned: Boolean!
+  minimumNumberOfJudgesAvailable: Boolean!
+}
+
+type JudgePaginatedOutput {
+  itemCount: Int!
+  items: [JudgeDto!]!
+}
+
+type PublicWebApparatusDto {
+  id: ID!
+  name: String!
+  gender: Gender!
+}
+
+type PublicWebLeagueDto {
+  id: ID!
+  name: String!
+}
+
+type PublicWebEventDto {
+  id: ID!
+  name: String!
+  eventStartDateTime: DateTime
+  entryFee: Float
+  internalPriceFund: Float
+  status: EventStatus!
+  eventImage: String
+  description: String
+  apparatuses: [PublicWebApparatusDto!]
+  leagues: [PublicWebLeagueDto!]
+}
+
+type PublicWebEventPaginatedOutput {
+  itemCount: Int!
+  items: [PublicWebEventDto!]!
+}
+
+type Query {
+  me: UserDto!
+  apparatuses: [ApparatusDto!]!
+  apparatus(id: String!): ApparatusDto!
+  events(filter: EventFilter!, pagination: PaginationInput!): EventPaginatedOutput!
+  myNextApplicableEvent: EventDto
+  event(id: String!): EventDto
+  eventSingle(id: String!): EventDto
+  eventJuryDifficultyRoles(id: String!): EventJuryRolesDto!
+  eventJurySuperiorRoles(id: String!): EventJuryRolesDto!
+  myEvents: [EventDto!]!
+  allEvents: [EventDto!]!
+  pastEvents: [EventDto!]!
+  judgeRoleOnEvent(event: String!): EventJuryDto
+  judgeRolesOnEvents(events: [String!]!): [EventJuryDto!]
+  gyms: [GymDto!]!
+  gymSearch(queryString: String!): [GymDto!]!
+  gymnastApplications: [GymnastApplicationDto!]!
+  gymnastApplication(id: String!): GymnastApplicationDto!
+  gymnastApplicationsForUpcomingEvents: [GymnastApplicationDto!]!
+  inquiries(event: String!): [InquiryDto!]!
+  inquiry(inquiry: String!): InquiryDto
+  judgeApplications(pagination: PaginationInput!): JudgeApplicationPaginatedOutput!
+  judgeApplication(input: JudgeApplicationInput!): JudgeApplicationDto
+  judgeApplicationsInvited(input: JudgeApplicationInviteInput!): [JudgeApplicationDto!]!
+  judgeApplicationsApplied(sort: JudgeApplicationSortInput!, pagination: PaginationInput!, input: JudgeApplicationInviteInput!): JudgeApplicationPaginatedOutput!
+  leagues: [LeagueDto!]!
+  league(id: String!): LeagueDto!
+  playStreamById(playStream: String!): PlayStreamDto
+  playStream(filter: PlayStreamFilter!): PlayStreamDto
+  rankingList(rankingListInput: RankingListInput!): [RankingDto!]!
+  slots: [SlotDto!]!
+  difficultyJury(id: String!): DifficultyJuryDto
+  executionJury(id: String!): ExecutionJuryDto
+  executionJuries: [ExecutionJuryDto!]!
+  executionJuryStats(event: String!): ExecutionJuryStatsDto!
+  superiorJury(id: String!): SuperiorJuryDto
+  judges(filter: JudgeSearchFilter!, sort: JudgeSortInput!, pagination: PaginationInput!): JudgePaginatedOutput!
+  judgesNotIncludedInEvent(pagination: PaginationInput!, eventId: String!): JudgePaginatedOutput!
+  judge(id: String!): JudgeDto!
+  assistantJuryStats(event: String!): AssistantJuryStatsDto!
+  publicPlayStream(filter: PublicPlayStreamFilter!): PublicPlayStreamDto
+  publicEvent(event: String!): PublicEventDto
+  eventsHomepage(pagination: PaginationInput!): PublicWebEventPaginatedOutput!
+  eventsLanding(pagination: PaginationInput!): PublicWebEventPaginatedOutput!
+  chatRoom(apparatus: String!, event: String!): ChatRoomDto!
+}
+
+input EventFilter {
+  status: EventStatus
+  startedBeforeDate: String
+}
+
+input PaginationInput {
+  take: Int
+  skip: Int
+}
+
+input JudgeApplicationInput {
+  event: String!
+}
+
+input JudgeApplicationInviteInput {
+  event: String!
+}
+
+input JudgeApplicationSortInput {
+  column: JudgeApplicationSortable!
+  order: SortOrderInput!
+}
+
+enum JudgeApplicationSortable {
+  DateApplied
+  Category
+}
+
+enum SortOrderInput {
+  Ascending
+  Descending
+}
+
+input PlayStreamFilter {
+  event: String!
+  apparatus: String!
+}
+
+input RankingListInput {
+  event: String!
+  apparatus: String!
+  league: String!
+}
+
+input JudgeSearchFilter {
+  lastName: String
+}
+
+input JudgeSortInput {
+  column: JudgeSortable!
+  order: SortOrderInput!
+}
+
+enum JudgeSortable {
+  Approved
+}
+
+input PublicPlayStreamFilter {
+  event: String!
+  apparatus: String!
+}
+
+type Mutation {
+  registerGymnast(input: RegisterGymnastInput!): GymnastDto!
+  registerJudge(input: RegisterJudgeInput!): JudgeDto!
+  login(input: LoginUserInput!): LoginUserDto!
+  loginMobile(input: LoginUserInput!): LoginUserDto!
+  autoLoginWithToken(input: AutoLoginTokenInput!): LoginUserDto!
+  refresh(input: RefreshAccessTokenInput!): RefreshedAccessTokenDto!
+  verifyAccount(input: AccountVerificationInput!): AccountVerificationOutput!
+  impersonateD1(input: ImpersonateD1Input!): ImpersonateD1Dto!
+  createApparatus(input: ApparatusInput!): ApparatusDto!
+  imOnline(event: String!): String!
+  createGym(input: GymInput!): GymDto!
+  createGymnastApplication(input: GymnastApplicationInput!): GymnastApplicationDto!
+  gymnastApplicationReview(input: GymnastApplicationReviewInput!, id: String!): GymnastApplicationDto!
+  createInquiry(input: InquiryInput!): InquiryDto!
+  startResolvingInquiry(input: InquiryStartResolvingInput!): InquiryDto!
+  resolveInquiry(input: InquiryResolveInput!): InquiryDto!
+  createJudgeApplication(input: JudgeApplicationCreateInput!): JudgeApplicationDto!
+  createJudgeApplicationInvite(input: JudgeApplicationCreateInviteInput!): JudgeApplicationDto!
+  createLeague(input: LeagueInput!): LeagueDto!
+  startPlayStream(input: PlayStreamDirectingInput!): PlayStreamDto!
+  pausePlayStream(input: PlayStreamDirectingInput!): PlayStreamDto!
+  playSlot(input: PlayStreamDirectingInput!): PlayStreamDto!
+  nextSlot(input: PlayStreamDirectingInput!): PlayStreamDto!
+  stopPlayStream(input: PlayStreamDirectingInput!): PlayStreamDto!
+  eliminateCurrentSlot(input: PlayStreamEliminateSlotInput!): PlayStreamDto!
+  startScoring(input: ScoreInput!): ScoreDto!
+  confirmScore(slot: String!): ScoreDto!
+  createDifficultyScore(input: DifficultyScoreInput!): DifficultyScoreDto!
+  createExecutionScore(input: ExecutionScoreInput!): ExecutionScoreDto!
+  createExecutionScoreForExecutionJuror(input: ExecutionScoreInput!): ExecutionScoreDto!
+  createLineScore(input: LineScoreInput!): LineScoreDto!
+  createTimeScore(input: TimeScoreInput!): TimeScoreDto!
+  createDifficultyJury(input: DifficultyJuryCreateInput!): DifficultyJuryDto!
+  updateDifficultyJury(input: DifficultyJuryUpdateInput!, id: String!): DifficultyJuryDto!
+  deleteDifficultyJury(id: String!): String!
+  createExecutionJury(input: ExecutionJuryInput!): ExecutionJuryDto!
+  randomizeExecutionJury(event: String!): [ExecutionJuryDto!]!
+  createSuperiorJury(input: SuperiorJuryCreateInput!): SuperiorJuryDto!
+  updateSuperiorJury(input: SuperiorJuryUpdateInput!, id: String!): SuperiorJuryDto!
+  deleteSuperiorJury(id: String!): String!
+  approveJudge(judge: String!): JudgeDto!
+  randomizeAssistantJury(event: String!): [AssistantJuryDto!]!
+  requestPasswordReset(input: RequestPasswordResetInput!): RequestPasswordResetOutput!
+  resetPassword(input: ResetPasswordInput!): ResetPasswordOutput!
+  updateExecutionScore(input: ExecutionScoreUpdateInput!): ExecutionScoreDto!
+  createPublishedEvent(input: EventInputPublished!): EventDto!
+  validateEventForScheduling(id: String!): Boolean!
+  scheduleEvent(id: String!): EventDto!
+  updateLineScore(input: LineScoreUpdateInput!): LineScoreDto!
+  updateTimeScore(input: TimeScoreUpdateInput!): TimeScoreDto!
+  updateDifficultyScore(input: DifficultyScoreUpdateInput!): DifficultyScoreDto!
+  createUrlToUploadGymnastRecording(slotId: String!): UploadRecordingUrlDto!
+  updateGymnastRecordingStatus(input: UpdateGymnastRecordingInput!): GymnastRecordingDto!
+  getTestPresignedUrl(slotId: String!): String!
+  requestAutoLoginToken: AutoLoginTokenDto!
+}
+
+input RegisterGymnastInput {
+  password: String!
+  email: String!
+  firstName: String!
+  lastName: String!
+  phone: String!
+  country: Country!
+  gender: Gender!
+  dateOfBirth: DateTime!
+}
+
+input RegisterJudgeInput {
+  password: String!
+  email: String!
+  firstName: String!
+  lastName: String!
+  phone: String!
+  country: Country!
+  judgeCategory: Int!
+  figLicenceId: String!
+  artisticGymnasticsBranch: ArtisticGymnasticsBranch!
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
+}
+
+input AutoLoginTokenInput {
+  autoLoginToken: String!
+}
+
+input RefreshAccessTokenInput {
+  refreshToken: String!
+}
+
+input AccountVerificationInput {
+  confirmationToken: String!
+}
+
+input ImpersonateD1Input {
+  difficultyJuryId: ID!
+}
+
+input ApparatusInput {
+  name: String!
+  gender: Gender!
+}
+
+input GymInput {
+  name: String!
+  country: String!
+  city: String!
+  address: String!
+}
+
+input GymnastApplicationInput {
+  zone: GymnastApplicationTimeZone!
+  event: String!
+  apparatus: String!
+  league: String!
+  gym: String!
+}
+
+input GymnastApplicationReviewInput {
+  status: GymnastApplicationStatus!
+}
+
+input InquiryInput {
+  slot: String!
+}
+
+input InquiryStartResolvingInput {
+  inquiry: String!
+}
+
+input InquiryResolveInput {
+  inquiry: String!
+  isScoreValid: Boolean!
+  difficultyScore: Float
+  neutralDeduction: Float
+  reason: String
+}
+
+input JudgeApplicationCreateInput {
+  event: String!
+}
+
+input JudgeApplicationCreateInviteInput {
+  event: String!
+  judge: String!
+}
+
+input LeagueInput {
+  name: String!
+  minScore: Float
+  maxScore: Float
+}
+
+input PlayStreamDirectingInput {
+  playStream: String!
+}
+
+input PlayStreamEliminateSlotInput {
+  playStream: String!
+  reason: EliminateSlotReason!
+}
+
+input ScoreInput {
+  slot: String!
+}
+
+input DifficultyScoreInput {
+  difficultyScore: Float!
+  neutralDeduction: Float!
+  slot: String!
+}
+
+input ExecutionScoreInput {
+  executionScore: Float!
+  artistryScore: Float
+  slot: String!
+  createdByJuror: JuryExecutionRole
+}
+
+input LineScoreInput {
+  lineScoreDeduction: Float!
+  slot: String!
+}
+
+input TimeScoreInput {
+  timeScoreDeduction: Float!
+  slot: String!
+}
+
+input DifficultyJuryCreateInput {
+  apparatus: String!
+  event: String!
+  juryRole: JuryDifficultyRole!
+  judge: String!
+}
+
+input DifficultyJuryUpdateInput {
+  apparatus: String!
+  event: String!
+  juryRole: JuryDifficultyRole!
+}
+
+input ExecutionJuryInput {
+  apparatus: String!
+  event: String!
+  juryRole: JuryExecutionRole!
+  judge: String!
+}
+
+input SuperiorJuryCreateInput {
+  apparatus: String!
+  event: String!
+  juryRole: JurySuperiorRole!
+  judge: String!
+}
+
+input SuperiorJuryUpdateInput {
+  apparatus: String!
+  event: String!
+  juryRole: JurySuperiorRole!
+}
+
+input RequestPasswordResetInput {
+  email: String!
+}
+
+input ResetPasswordInput {
+  password: String!
+  confirmationToken: String!
+}
+
+input ExecutionScoreUpdateInput {
+  id: ID!
+  slot: String!
+  executionScore: Float!
+}
+
+input EventInputPublished {
+  name: String!
+  eventStartDateTime: DateTime!
+  entryFee: Float!
+  internalPriceFund: Float!
+  minApplicantsPerLeague: Int!
+  maxApplicantsPerLeague: Int!
+  eventImage: String!
+  description: String!
+  apparatuses: [String!]!
+  leagues: [String!]!
+}
+
+input LineScoreUpdateInput {
+  id: ID!
+  slot: String!
+  lineScoreDeduction: Float!
+}
+
+input TimeScoreUpdateInput {
+  id: ID!
+  slot: String!
+  timeScoreDeduction: Float!
+}
+
+input DifficultyScoreUpdateInput {
+  id: ID!
+  slot: String!
+  difficultyScore: Float
+  neutralDeduction: Float
+}
+
+input UpdateGymnastRecordingInput {
+  status: GymnastRecordingStatus!
+  slotId: String!
+}
+
+type Subscription {
+  gymnastRecordingStatusUpdated(input: EventApparatusSubscriptionInput!): SlotDto!
+  eventJuryOnlineStatusChanged(input: EventJuryOnlineStatusChangedInput!): EventJuryDto!
+  inquiryCreated(event: String!): InquiryDto!
+  finalStartingListUpdated(apparatus: String!, event: String!): FinalStartingListDto!
+  inquiryStartedResolving(inquiry: String!): InquiryDto!
+  inquiryResolved(inquiry: String!): InquiryDto!
+  playStreamUpdated(input: PlayStreamUpdatedSubscriptionInput!): PlayStreamDto!
+  rankingListUpdatedForEventApparatusLeague(input: RankingUpdatedSubscriptionInput!): [RankingDto!]!
+  scoringFinalized(slot: String!): ScoreDto!
+  scoringStarted(slot: String!): String!
+  scoringUpdated(slot: String!): Boolean!
+  scoreCreated(slot: String!): ScoreDto!
+  eventStatusUpdated(input: EventStatusUpdatedSubscriptionInput!): EventDto!
+  eventInquiryUpdated(input: EventStatusUpdatedSubscriptionInput!): EventDto!
+  publicPlayStreamUpdated(input: PlayStreamUpdatedSubscriptionInput!): PublicPlayStreamDto!
+}
+
+input EventApparatusSubscriptionInput {
+  event: String!
+  apparatus: String!
+}
+
+input EventJuryOnlineStatusChangedInput {
+  event: String!
+}
+
+input PlayStreamUpdatedSubscriptionInput {
+  playStream: String!
+}
+
+input RankingUpdatedSubscriptionInput {
+  event: String!
+  apparatus: String!
+  league: String!
+}
+
+input EventStatusUpdatedSubscriptionInput {
+  event: String!
+}
