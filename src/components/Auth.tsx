@@ -2,10 +2,8 @@ import { Button, Spin, message } from "antd";
 import { useMutation } from "@apollo/client";
 import { LOG_IN } from "../actions";
 import { LoginUserDto, LoginUserInput } from "../types/types";
+import { AuthProps } from "../interfaces/interfaces";
 
-interface AuthProps {
-    children?: JSX.Element;
-}
 export function Auth({ children }: AuthProps) {
     const [handleLogin, { data, loading }] = useMutation<
         { login: LoginUserDto },

@@ -2,10 +2,7 @@ import { useMutation, useQuery } from "@apollo/client";
 import { LeagueDto, LeagueInput } from "../types/types";
 import { ADD_LEAGUE, GET_LEAGUES } from "../actions";
 import { Button, message, Spin } from "antd";
-
-interface GetLeagues {
-    leagues: LeagueDto[];
-}
+import { GetLeagues } from "../interfaces/interfaces";
 
 export function Leagues() {
     const { data, loading, error, refetch } = useQuery<GetLeagues>(
