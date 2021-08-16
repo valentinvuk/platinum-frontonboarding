@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { LeagueDto, LeagueInput } from "../types/types";
-import { ADD_LEAGUE, GET_LEAGUES } from "../mutations";
+import { ADD_LEAGUE, GET_LEAGUES } from "../actions";
 import { Button, message, Spin } from "antd";
 
 interface GetLeagues {

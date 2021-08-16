@@ -1,6 +1,6 @@
 import { Button, Spin, message } from "antd";
 import { useMutation } from "@apollo/client";
-import { LOG_IN } from "../mutations";
+import { LOG_IN } from "../actions";
 import { LoginUserDto, LoginUserInput } from "../types/types";
 
 interface AuthProps {
