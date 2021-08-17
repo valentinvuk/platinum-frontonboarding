@@ -3,6 +3,7 @@ import { LeagueDto, LeagueInput } from "../types/types";
 import { ADD_LEAGUE, GET_LEAGUES } from "../actions";
 import { Button, message, Spin } from "antd";
 import { GetLeagues } from "../interfaces/interfaces";
+import { useCallback } from "react";
 
 export function Leagues() {
     const { data, loading, error, refetch } = useQuery<GetLeagues>(
@@ -27,13 +28,9 @@ export function Leagues() {
         },
     });
 
-    const refetching = async () => {
-        await refetch();
-    };
-
-    const createNewLeague = () => {
+    const createNewLeague: () => void = () => {
         const createLeague: LeagueInput = {
-            name: "Premier League",
+            name: `Premier League ${Math.floor(Math.random() * 100)}`,
         };
 
         addLeague({ variables: { input: createLeague } })
@@ -43,10 +40,17 @@ export function Leagues() {
         message.success("New league created.");
     };
 
-    const renderData = () =>
-        data?.leagues.map((league: LeagueDto) => (
-            <p key={league.id}>{league.name}</p>
-        ));
+    const refetchData: () => void = async () => {
+        await refetch();
+    };
+
+    const renderData: () => JSX.Element[] | undefined = useCallback(
+        () =>
+            data?.leagues.map((league: LeagueDto) => (
+                <p key={league.id}>{league.name}</p>
+            )),
+        [data],
+    );
 
     if (loading) return <Spin />;
     if (error) return <div>Error encountered.</div>;
@@ -54,7 +58,7 @@ export function Leagues() {
     return (
         <>
             <div>{renderData()}</div>
-            <Button onClick={refetching} type={"primary"}>
+            <Button onClick={refetchData} type={"primary"}>
                 Refetch
             </Button>
             <Button onClick={createNewLeague}>Create new</Button>

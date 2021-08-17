@@ -13,6 +13,8 @@ import {
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
 import { notification } from "antd";
+import { isTtlValid } from "./utils/isTtlValid";
+import { getLocalByKey } from "./utils/getLocalByKey";
 
 export const httpLink = new HttpLink({
     uri: process.env.REACT_APP_API_URL,
@@ -22,17 +24,17 @@ export const authLink = new ApolloLink((operation, forward) => {
     operation.setContext({
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });
-    const local = localStorage.getItem("ttlExpiry");
+
+    const local = getLocalByKey("ttlExpiry");
     if (local) {
         const ttlExpiry = JSON.parse(local);
-        const now = new Date();
 
-        if (now.getTime() + 300000 > +ttlExpiry.expiry) {
+        if (isTtlValid(ttlExpiry)) {
             notification.open({
                 message: "TTL expiry",
                 description: "TTL expires in less than 5min",
             });
-            //useMutation...
+            //TODO: useMutation(REFRESH_TOKEN)
         }
     }
     return forward(operation);
@@ -40,7 +42,7 @@ export const authLink = new ApolloLink((operation, forward) => {
 
 export const errorLink = onError(({ graphQLErrors, networkError }) => {
     if (graphQLErrors)
-        graphQLErrors.map(({ message, locations, path }) => {
+        graphQLErrors.map(({ message }) => {
             return notification.open({
                 message: "GraphQL error",
                 description: message,

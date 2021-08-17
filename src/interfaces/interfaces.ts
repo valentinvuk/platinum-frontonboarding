@@ -7,3 +7,5 @@ export interface AuthProps {
 export interface GetLeagues {
     leagues: LeagueDto[];
 }
+
+//TODO: Add more interfaces

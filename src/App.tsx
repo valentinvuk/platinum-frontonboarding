@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { Auth } from "./components/Auth";
 import { Leagues } from "./components/Leagues";
 
 function App() {
+    useEffect(() => localStorage.clear(), []);
     return (
         <div className="App">
-            <header className="App-header">
-                <Auth>
-                    <Leagues />
-                </Auth>
-            </header>
+            <Auth>
+                <Leagues />
+            </Auth>
         </div>
     );
 }
