@@ -3,8 +3,9 @@ import { useMutation } from "@apollo/client";
 import { LOG_IN } from "../actions";
 import { LoginUserDto, LoginUserInput } from "../types/types";
 import { AuthProps } from "../interfaces/interfaces";
-import { setLocalStorage } from "../utils/setLocalStorage";
+import { setLocallyUserAuthData } from "../utils/setLocallyUserAuthData";
 import AuthStyles from "../styles/Auth.module.scss";
+import Title from "antd/es/typography/Title";
 
 export function Auth({ children }: AuthProps) {
     const [handleLogin, { data, loading }] = useMutation<
@@ -13,7 +14,7 @@ export function Auth({ children }: AuthProps) {
     >(LOG_IN, {
         onCompleted({ login }) {
             if (login) {
-                setLocalStorage(login);
+                setLocallyUserAuthData(login);
                 message.info("You have 60 minutes of usage.");
             }
         },
@@ -25,19 +26,27 @@ export function Auth({ children }: AuthProps) {
             password: "blabla123",
         };
 
-        handleLogin({ variables: { input: createUser } })
-            .then((r) => console.log(r.data?.login))
-            .catch((e) => console.log(e));
+        handleLogin({ variables: { input: createUser } }).catch((e) =>
+            console.log(e),
+        );
     };
 
     if (loading) return <Spin />;
 
     return (
-        <div>
+        <div
+            style={{
+                display: "flex",
+                justifyContent: "center",
+                flexDirection: "column",
+            }}
+        >
             {!data ? (
                 <>
-                    <h1>Welcome to Platinum League</h1>
-                    <div className={AuthStyles.loginContainer}>
+                    <div className={AuthStyles.top}>
+                        <Title>Welcome to Platinum League</Title>
+                    </div>
+                    <div className={AuthStyles.middle}>
                         <Button onClick={onLoginClick} type={"primary"}>
                             Log In
                         </Button>
@@ -46,7 +55,9 @@ export function Auth({ children }: AuthProps) {
                 </>
             ) : (
                 <>
-                    <h1>Welcome</h1>
+                    <Title className={AuthStyles.text}>
+                        All leagues in the world
+                    </Title>
                     {children}
                 </>
             )}

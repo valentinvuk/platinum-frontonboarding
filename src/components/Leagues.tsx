@@ -6,16 +6,13 @@ import { GetLeagues } from "../interfaces/interfaces";
 import { useCallback } from "react";
 
 export function Leagues() {
-    const { data, loading, error, refetch } = useQuery<GetLeagues>(
-        GET_LEAGUES,
-        {
-            onError(e) {
-                if (e) {
-                    message.error(e);
-                }
-            },
+    const { data, loading, refetch } = useQuery<GetLeagues>(GET_LEAGUES, {
+        onError(e) {
+            if (e) {
+                message.error(e);
+            }
         },
-    );
+    });
 
     const [addLeague] = useMutation<
         { data: LeagueDto },
@@ -33,9 +30,9 @@ export function Leagues() {
             name: `Premier League ${Math.floor(Math.random() * 100)}`,
         };
 
-        addLeague({ variables: { input: createLeague } })
-            .then((r) => console.log(r))
-            .catch((e) => console.log(e));
+        addLeague({ variables: { input: createLeague } }).catch((e) =>
+            console.log(e),
+        );
 
         message.success("New league created.");
     };
@@ -53,7 +50,6 @@ export function Leagues() {
     );
 
     if (loading) return <Spin />;
-    if (error) return <div>Error encountered.</div>;
 
     return (
         <>

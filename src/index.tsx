@@ -22,7 +22,7 @@ export const httpLink = new HttpLink({
 
 export const authLink = new ApolloLink((operation, forward) => {
     operation.setContext({
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        headers: { Authorization: `Bearer ${getLocalByKey("token")}` },
     });
 
     const local = getLocalByKey("ttlExpiry");
@@ -30,7 +30,7 @@ export const authLink = new ApolloLink((operation, forward) => {
         const ttlExpiry = JSON.parse(local);
 
         if (isTtlValid(ttlExpiry)) {
-            notification.open({
+            notification.error({
                 message: "TTL expiry",
                 description: "TTL expires in less than 5min",
             });
@@ -41,15 +41,16 @@ export const authLink = new ApolloLink((operation, forward) => {
 });
 
 export const errorLink = onError(({ graphQLErrors, networkError }) => {
-    if (graphQLErrors)
+    if (graphQLErrors) {
         graphQLErrors.map(({ message }) => {
-            return notification.open({
+            return notification.error({
                 message: "GraphQL error",
                 description: message,
             });
         });
+    }
     if (networkError) {
-        notification.open({
+        notification.error({
             message: "Network error",
             description: networkError.message,
         });

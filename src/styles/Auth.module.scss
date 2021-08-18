@@ -1,4 +1,21 @@
-.loginContainer {
+%container {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+}
+
+.top {
+  @extend %container;
+  top:15px;
+  position: fixed;
+}
+
+.middle {
+  @extend %container;
+  top:40vh;
+}
+
+.text {
+  color:cadetblue;
 }

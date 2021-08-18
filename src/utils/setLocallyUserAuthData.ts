@@ -1,6 +1,8 @@
 import { LoginUserDto } from "../types/types";
 
-export const setLocalStorage: (login: LoginUserDto) => void = (login) => {
+export const setLocallyUserAuthData: (login: LoginUserDto) => void = (
+    login,
+) => {
     localStorage.setItem("token", login.accessToken as string);
     const currentTime = new Date();
     const dataForLocalStorage = JSON.stringify({
